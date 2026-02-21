@@ -1,10 +1,16 @@
 # Push-to-Talk Voice-to-Text
 
-A Windows push-to-talk app that transcribes your speech and pastes it into any application. Hold the **Insert** key to record, release to paste. Uses a local Whisper model — no API keys, no cloud, fully offline.
+A Windows push-to-talk app that transcribes your speech and pastes it into any application. Double-tap **Insert** (or **Right Ctrl**) to start recording, tap again to stop and paste. Uses a local Whisper model — no API keys, no cloud, fully offline.
+
+## Download
+
+**[Download PTT-1.0.0-win64.msi](https://github.com/brontoguana/windows-ptt/releases/download/v1.0.0/PTT-1.0.0-win64.msi)**
+
+Run the installer and launch "Push-to-Talk" from the Start Menu. The first launch downloads the Whisper model (~150 MB).
 
 ## Features
 
-- **Push-to-talk** — Hold Insert to record, release to transcribe and paste
+- **Double-tap to talk** — Double-tap Insert or Right Ctrl to record, tap once more to transcribe and paste
 - **Live transcription** — See your words appear in a floating overlay as you speak
 - **Cancel with ESC** — Press Escape while recording to discard
 - **Works everywhere** — Pastes into whatever app has focus (Notepad, browser, Slack, etc.)
@@ -12,9 +18,16 @@ A Windows push-to-talk app that transcribes your speech and pastes it into any a
 - **Lightweight** — Sits quietly in the system tray until you need it
 - **Single instance** — Launching again cleanly replaces the running copy
 
-## Quick Start
+## Usage
 
-### From Source
+| Action | Key | Result |
+|--------|-----|--------|
+| Start recording | Double-tap **Insert** or **Right Ctrl** | Overlay appears, mic starts capturing |
+| Finish & paste | Tap **Insert** or **Right Ctrl** | Text is transcribed and pasted |
+| Cancel | Press **ESC** while recording | Recording discarded, nothing pasted |
+| Quit | Right-click tray icon → Quit | App exits |
+
+## Building from Source
 
 Requires **Python 3.12 or 3.14** on Windows (Python 3.13 is not supported due to a missing ctranslate2 wheel).
 
@@ -29,22 +42,9 @@ pip install -r requirements.txt
 # Generate the tray icon
 python generate_icon.py
 
-# Run (first launch downloads the Whisper model ~150MB)
+# Run
 python run.py
 ```
-
-### From Installer
-
-Run `PTT-1.0.0-win64.msi` and launch "Push-to-Talk" from the Start Menu.
-
-## Usage
-
-| Action | Key | Result |
-|--------|-----|--------|
-| Start recording | Hold **Insert** | Overlay appears, mic starts capturing |
-| Finish & paste | Release **Insert** | Text is transcribed and pasted |
-| Cancel | Press **ESC** while holding Insert | Recording discarded, nothing pasted |
-| Quit | Right-click tray icon → Quit | App exits |
 
 ## Configuration
 
@@ -57,7 +57,7 @@ Edit `ptt/config.py` to customise:
 | `WHISPER_LANGUAGE` | `"en"` | Language code, or `None` for auto-detect |
 | `OVERLAY_POSITION` | `"bottom_right"` | `"bottom_right"`, `"top_right"`, or `"center"` |
 | `STREAM_INTERVAL_MS` | `2000` | How often live transcription updates (ms) |
-| `MIN_RECORDING_DURATION` | `0.3` | Minimum seconds to avoid accidental taps |
+| `DOUBLE_TAP_WINDOW_S` | `0.4` | Max seconds between taps to trigger recording |
 
 ## Building the MSI Installer
 
