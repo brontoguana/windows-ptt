@@ -68,7 +68,7 @@ executables = [
 
 setup(
     name="PTT",
-    version="1.0.0",
+    version="1.1.0",
     description="Push-to-Talk Voice-to-Text",
     author="stoate",
     options={

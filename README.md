@@ -4,7 +4,7 @@ A Windows push-to-talk app that transcribes your speech and pastes it into any a
 
 ## Download
 
-**[Download PTT-1.0.0-win64.msi](https://github.com/brontoguana/windows-ptt/releases/download/v1.0.0/PTT-1.0.0-win64.msi)**
+**[Download PTT-1.1.0-win64.msi](https://github.com/brontoguana/windows-ptt/releases/download/v1.1.0/PTT-1.1.0-win64.msi)**
 
 Run the installer and launch "Push-to-Talk" from the Start Menu. The first launch downloads the Whisper model (~150 MB).
 
@@ -65,7 +65,7 @@ Edit `ptt/config.py` to customise:
 python setup_cx.py bdist_msi
 ```
 
-Output: `dist/PTT-1.0.0-win64.msi`
+Output: `dist/PTT-1.1.0-win64.msi`
 
 ## License
 
