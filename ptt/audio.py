@@ -18,6 +18,14 @@ class AudioRecorder:
         """Open the audio stream. Raises RuntimeError if no mic found."""
         self._close_stream()
 
+        # Force PortAudio to re-enumerate devices so newly connected
+        # Bluetooth (or other) microphones are discovered.
+        try:
+            sd._terminate()
+            sd._initialize()
+        except Exception:
+            pass
+
         try:
             device_info = sd.query_devices(kind='input')
             print(f"Using audio device: {device_info['name']}")
